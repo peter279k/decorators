@@ -7,7 +7,11 @@ public class ClientApplication {
         String fileName = "output.txt";
 
         DataSourceDecorator encoded = new CompressionDecorator(
-                new EncryptionDecorator(new FileDataSource(fileName))
+                new EncryptionDecorator(
+                        new EncodeDecorator(
+                                new FileDataSource(fileName)
+                        )
+                )
         );
 
         encoded.writeData(records);
